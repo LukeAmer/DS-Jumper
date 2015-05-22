@@ -32,7 +32,7 @@ public class PlayerControl : MonoBehaviour
 
 		if(!touch && jumpPower > 0.0f)
 		{
-			//test
+			gameObject.GetComponent<Rigidbody2D>().AddForce(new Vector2(0.5f, 1.0f) * jumpPower * 100.0f);
 		}
 
 		if(touch)
@@ -50,7 +50,8 @@ public class PlayerControl : MonoBehaviour
 	{
 		if(power == "Increase")
 		{
-			jumpPower += 1.0f * Time.deltaTime;
+			if(jumpPower < 5.0f)
+				jumpPower += 2.0f * Time.deltaTime;
 		}
 		else
 		{
