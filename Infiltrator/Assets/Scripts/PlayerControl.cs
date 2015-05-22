@@ -7,7 +7,7 @@ public class PlayerControl : MonoBehaviour
 	
 	
 	// Declare Private variables below
-	float jumpPower = 0.0f;
+	float jumpPower = 1.0f;
 	bool touch = false;
 
 
@@ -30,7 +30,7 @@ public class PlayerControl : MonoBehaviour
 			touch = false;
 		}
 
-		if(!touch && jumpPower > 0.0f)
+		if(!touch && jumpPower > 1.0f)
 		{
 			gameObject.GetComponent<Rigidbody2D>().AddForce(new Vector2(0.5f, 1.0f) * jumpPower * 100.0f);
 		}
@@ -43,6 +43,11 @@ public class PlayerControl : MonoBehaviour
 		{
 			JumpPowerChange("Decrease");
 		}
+
+		if(gameObject.transform.position.y < -7.0f)
+		{
+			Application.LoadLevel(0);
+		}
 	
 	}
 
@@ -51,11 +56,11 @@ public class PlayerControl : MonoBehaviour
 		if(power == "Increase")
 		{
 			if(jumpPower < 5.0f)
-				jumpPower += 2.0f * Time.deltaTime;
+				jumpPower += 3.0f * Time.deltaTime;
 		}
 		else
 		{
-			jumpPower = 0.0f;
+			jumpPower = 1.0f;
 		}
 
 		Debug.Log(jumpPower.ToString());
