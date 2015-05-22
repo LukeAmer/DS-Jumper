@@ -32,7 +32,7 @@ public class PlayerControl : MonoBehaviour
 
 		if(!touch && jumpPower > 0.0f)
 		{
-
+			//test
 		}
 
 		if(touch)
