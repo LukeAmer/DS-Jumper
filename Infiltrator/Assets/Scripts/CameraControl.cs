@@ -24,7 +24,7 @@ public class CameraControl : MonoBehaviour
 		cameraTarget = GameObject.Find("Camera Target");
 		player = GameObject.Find("Player");
 
-		cameraTarget.transform.position = new Vector2(endHole.transform.position.x, endHole.transform.position.y + 5.0f);
+		cameraTarget.transform.position = new Vector2(endHole.transform.position.x + 2.0f, endHole.transform.position.y + 2.0f);
 	}
 	
 	// Update is called once per frame

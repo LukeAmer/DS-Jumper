@@ -4,9 +4,10 @@ using System.Collections;
 public class GameControl : MonoBehaviour 
 {
 	// Declare Public variables below
-	public enum states{Play, Pause, GameOver};
+	public enum states{Intro, Play, Pause, GameOver};
 	public states GameState;
 	public bool cameraFollow = false;
+	public int jumpNumber = 0;
 	
 	// Declare Private variables below
 	GameObject player;
@@ -17,7 +18,7 @@ public class GameControl : MonoBehaviour
 	void Start () 
 	{
 		player = GameObject.Find("Player");
-		GameState = states.Play;
+		GameState = states.Intro;
 		guiControl = gameObject.GetComponent<GUIControl>();
 		cameraControl = GameObject.Find("Main Camera").GetComponent<CameraControl>();
 	}
@@ -33,6 +34,12 @@ public class GameControl : MonoBehaviour
 				player.GetComponent<Rigidbody2D>().isKinematic = false;
 				cameraFollow = true;
 			}
+		}
+
+		if(GameState == states.Intro)
+		{
+			if(!cameraControl.introCamera)
+				GameState = states.Play;
 		}
 
 		if(GameState == states.GameOver)

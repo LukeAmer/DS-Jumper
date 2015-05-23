@@ -10,16 +10,59 @@ public class GUIControl : MonoBehaviour
 	public bool fadeOut = false;
 	
 	// Declare Private variables below
-
+	GameControl gameControl;
+	Text levelNumber;
+	Text levelDetails;
+	Text jumpsNumber;
+	Text fps;
 
 	// Use this for initialization
 	void Start () 
 	{
-		fadeWhite.color = new Color(fadeWhite.color.r, fadeWhite.color.g, fadeWhite.color.b, 1.0f); 
+		gameControl = GameObject.Find("Game Control").GetComponent<GameControl>();
+		levelNumber = GameObject.Find("Level Number").GetComponent<Text>();
+		levelDetails = GameObject.Find("Level Details").GetComponent<Text>();
+		jumpsNumber = GameObject.Find("Jumps Number").GetComponent<Text>();
+		fps = GameObject.Find("FPS").GetComponent<Text>();
+
+		fadeWhite.color = new Color(fadeWhite.color.r, fadeWhite.color.g, fadeWhite.color.b, 1.0f);
 	}
 	
 	// Update is called once per frame
 	void Update () 
+	{
+		ScreenFade();
+
+		TextFade(levelNumber, "Out", 0.2f);
+		TextFade(levelDetails, "Out", 0.2f);
+
+		if(gameControl.GameState == GameControl.states.Play && gameControl.cameraFollow)
+		{
+			TextFade(jumpsNumber, "In", 0.2f);
+		}
+
+		if(fadeOut)
+			TextFade(jumpsNumber, "Out", 1.0f);
+
+		jumpsNumber.text = gameControl.jumpNumber.ToString();
+		fps.text = Mathf.Round(1.0f/Time.deltaTime).ToString();
+	}
+
+	void TextFade(Text text, string fadeInorOut, float rate)
+	{
+		if(fadeInorOut == "Out")
+		{
+			if(text.color.a > 0.0f)
+				text.color = new Color(text.color.r, text.color.g, text.color.b, text.color.a - rate * Time.deltaTime);
+		}
+		else
+		{
+			if(text.color.a < 1.0f)
+				text.color = new Color(text.color.r, text.color.g, text.color.b, text.color.a + rate * Time.deltaTime);
+		}
+	}
+
+	void ScreenFade()
 	{
 		if(fadeIn)
 		{
@@ -31,7 +74,7 @@ public class GUIControl : MonoBehaviour
 			else
 				fadeIn = false;
 		}
-
+		
 		if(fadeOut)
 		{
 			if(fadeWhite.color.a < 1.0f)
@@ -44,6 +87,5 @@ public class GUIControl : MonoBehaviour
 				Application.LoadLevel(0);
 			}
 		}
-	
 	}
 }
