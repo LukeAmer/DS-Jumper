@@ -1,11 +1,12 @@
 fileFormatVersion: 2
 guid: e45511b93995bbf4995236446a76a8d7
-timeCreated: 1432300747
+timeCreated: 1432327966
 licenseType: Free
 TextureImporter:
   fileIDToRecycleName:
     21300000: SpriteSheet_0
     21300002: SpriteSheet_1
+    21300004: SpriteSheet_2
   serializedVersion: 2
   mipmaps:
     mipMapMode: 0
@@ -65,9 +66,19 @@ TextureImporter:
       rect:
         serializedVersion: 2
         x: 150
-        y: 1698
+        y: 1708
         width: 92
-        height: 320
+        height: 301
+      alignment: 0
+      pivot: {x: .5, y: .5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+    - name: SpriteSheet_2
+      rect:
+        serializedVersion: 2
+        x: 279
+        y: 1697
+        width: 57
+        height: 299
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
