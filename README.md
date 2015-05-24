@@ -1,2 +1,2 @@
-# BeepTest
-Unity Game
+# Jumper
+Unity Mobile Game
